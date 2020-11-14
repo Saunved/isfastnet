@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="text-align: center;">
+        <h1 id="text" style="margin-top: 35vh">Working...</h1>
+          <b>~ isfastnet ~</b> 
+          <p>A tiny script (1.4kb uglified) that tells if your internet is fast or slow (in less than 1s) </p> 
+          <p>To test, open Chrome DevTools > Network > Throttling (select an option) > Refresh </p>
+          <hr>
+          <p>Built on top of <a href="https://stackoverflow.com/a/21372151/6513036">this Stack Overflow answer</a> </p>
+          <p><a target="_blank" href="https://github.com/Saunved/isfastnet">Github</a> / <a target="_blank" href="https://www.npmjs.com/package/isfastnet">npm</a></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/isfastnet"></script>
+    <script>
+        isFastNet((value) => {
+        let speed = value ? 'fast':'slow';
+        document.querySelector('#text').innerHTML = "Your internet is " + speed;
+    })
+    </script>
+</body>
+</html>

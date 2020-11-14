@@ -1,26 +1,24 @@
 function isFastNet(callback, options = {}){
 
     let _options = {
-        timesToTest: 5, // more cycles = better results but takes longer
-        threshold: 200, // in ms
+        timesToTest: 5,
+        threshold: 200,
         image:  "https://www.google.com/images/phd/px.gif",
         allowEarlyExit: true
     }
 
     Object.assign(_options, options);
 
-    // let testImage = _options.image;
-
     let arrTimes = [];
-    let i = 0; // start
+    let i = 0;
     let dummyImage = new Image();
     let isDismissed = false;
     
     testLatency(function(avg){
-        callback((avg <= _options.threshold)) // returns true if fast internet and false if slow internet
+        callback((avg <= _options.threshold))
     });
     
-    /** test and average time took to download image from server, called recursively timesToTest times */
+    // Recursively get average latency
     function testLatency(cb) {
 
     if(_options.allowEarlyExit){
@@ -44,7 +42,7 @@ function isFastNet(callback, options = {}){
             i++;
         };
       } else {
-        /** calculate average of array items then callback */
+        /** calculate average */
         let sum = arrTimes.reduce(function(a, b) { return a + b; });
         let avg = sum / arrTimes.length;
         if(!isDismissed){
