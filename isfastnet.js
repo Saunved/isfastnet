@@ -4,18 +4,29 @@ function isFastNet(callback, options = {}){
         timesToTest: 5,
         threshold: 200,
         image:  "https://www.google.com/images/phd/px.gif",
-        allowEarlyExit: true
+        allowEarlyExit: true,
+        verbose: false
     }
 
     Object.assign(_options, options);
+
+    //If verbose option is set, force allowEarlyExit to be false
+    if(_options.verbose) {
+      _options.allowEarlyExit = false;
+    }
 
     let arrTimes = [];
     let i = 0;
     let dummyImage = new Image();
     let isDismissed = false;
     
-    testLatency(function(avg){
-        callback((avg <= _options.threshold))
+    testLatency(function(avgInfo){
+      if (_options.verbose) {
+        avgInfo["isFast"] = (avgInfo.averageLatency <= _options.threshold)
+        callback(avgInfo); 
+      } else {
+        callback((avgInfo <= _options.threshold))
+      }
     });
     
     // Recursively get average latency
@@ -46,7 +57,16 @@ function isFastNet(callback, options = {}){
         let sum = arrTimes.reduce(function(a, b) { return a + b; });
         let avg = sum / arrTimes.length;
         if(!isDismissed){
+          if(_options.verbose) {
+            let objectToReturn = {
+              "averageLatency": avg,
+              "threshold": _options.threshold,
+              "latencyReadings": arrTimes
+            }
+            cb(objectToReturn);
+          } else {
             cb(avg);
+          }
         }
       }
     }
