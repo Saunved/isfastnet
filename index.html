@@ -23,8 +23,10 @@
           <p><a target="_blank" href="https://github.com/Saunved/isfastnet">Github</a> / <a target="_blank" href="https://www.npmjs.com/package/isfastnet">npm</a></p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/isfastnet"></script>
-    <script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/isfastnet"></script> -->
+    <script type="module">
+        // import isFastNet from './isfastnet.js'
+        import isFastNet from 'https://cdn.jsdelivr.net/npm/isfastnet'
         isFastNet((value) => {
         let speed = value ? 'fast':'slow';
         document.querySelector('#text').innerHTML = "Your internet is " + speed;
