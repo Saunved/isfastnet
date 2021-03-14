@@ -9,17 +9,18 @@ A default export has been added now to ensure that the package can be integrated
 ## Example 1
 ```html
 <script type="module">
-    import isFastNet from 'https://cdn.jsdelivr.net/npm/isfastnet'
+    import isFastNet from 'https://cdn.jsdelivr.net/npm/isfastnet@2.0.0'
     isFastNet((value) => {
     let speed = value ? 'fast':'slow';
     console.log('Internet is ' + speed);
 })
+</script>
 ```
 
 ## Example 2 (Verbose)
 ```html
 <script type="module">
-    import isFastNet from 'https://cdn.jsdelivr.net/npm/isfastnet'
+    import isFastNet from 'https://cdn.jsdelivr.net/npm/isfastnet@2.0.0'
     isFastNet((data) => {
         /**
         * data = {

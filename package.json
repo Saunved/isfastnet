@@ -1,6 +1,6 @@
 {
   "name": "isfastnet",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Tiny script that tells you if the user's internet is fast",
   "main": "isfastnet.js",
   "scripts": {
